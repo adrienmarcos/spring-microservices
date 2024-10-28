@@ -6,6 +6,8 @@ import com.mycompany.customer.domain.repository.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public record CustomerService(CustomerRepository customerRepository) {
@@ -23,4 +25,5 @@ public record CustomerService(CustomerRepository customerRepository) {
 
         customerRepository.save(customer);
     }
+
 }
