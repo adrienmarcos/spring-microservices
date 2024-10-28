@@ -11,6 +11,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="customerService" />
+        <module name="fraudService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

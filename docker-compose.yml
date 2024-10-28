@@ -1,5 +1,5 @@
 services:
-  postgres:
+  postgres-customer:
     image: postgres:latest
     restart: always
     environment:
@@ -10,7 +10,20 @@ services:
     ports:
       - 5432:5432
     networks:
-      - postgres-db-network
+      - postgres
+
+  postgres-fraud:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+    networks:
+      - postgres
 
   pgadmin:
     image: dpage/pgadmin4
@@ -22,8 +35,8 @@ services:
     volumes:
       - ./servers.json:/pgadmin4/servers.json
     networks:
-      - postgres-db-network
+      - postgres
 
 networks:
-  postgres-db-network:
+  postgres:
     driver: bridge

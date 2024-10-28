@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: customer
+    name: customerService
   datasource:
     username: 'postgres'
     password: 'postgres'

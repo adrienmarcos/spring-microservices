@@ -21,7 +21,6 @@ public record CustomerService(CustomerRepository customerRepository) {
         // TODO check if email is not taken
         // TODO check if fistName and lastName are valid
 
-        log.info("customer {}", customer);
         customerRepository.save(customer);
     }
 }
