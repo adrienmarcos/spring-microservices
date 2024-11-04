@@ -11,6 +11,10 @@ import lombok.Getter;
 @Getter
 public class CustomerRegistrationRequest {
 
+    @JsonProperty("socialSecurityNumber")
+    @NotBlank(message = "Social security number cannot be empty")
+    private String socialSecurityNumber;
+
     @JsonProperty("firstName")
     @NotBlank(message = "Field first name cannot be empty")
     private String firstName;

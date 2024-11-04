@@ -19,8 +19,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
     private Integer id;
 
-//    @Column(name = "document", nullable = false)
-//    private String document;
+    @Column(name = "ss_number", nullable = false)
+    private String socialSecurityNumber;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;

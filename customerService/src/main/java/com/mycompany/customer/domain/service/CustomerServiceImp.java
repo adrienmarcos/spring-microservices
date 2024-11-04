@@ -1,6 +1,7 @@
 package com.mycompany.customer.domain.service;
 
 import com.mycompany.customer.api.model.request.CustomerRegistrationRequest;
+import com.mycompany.customer.domain.exception.ConflictException;
 import com.mycompany.customer.domain.model.Customer;
 import com.mycompany.customer.domain.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -12,20 +13,27 @@ import org.springframework.stereotype.Service;
 public record CustomerServiceImp(CustomerRepository customerRepository) implements CustomerService {
 
     @Override
-    public void register(CustomerRegistrationRequest customerRegistrationRequestRequest) {
+    public void register(CustomerRegistrationRequest customerRegistrationRequest) throws ConflictException {
+        if (isDuplicated(customerRegistrationRequest.getSocialSecurityNumber()))
+            throw new ConflictException("Customer is already registered");
+
         var customer = Customer.builder()
-                .firstName(customerRegistrationRequestRequest.getFirstName())
-                .lastName(customerRegistrationRequestRequest.getLastName())
-                .email(customerRegistrationRequestRequest.getEmail())
-                .address(customerRegistrationRequestRequest.getAddress())
+                .firstName(customerRegistrationRequest.getFirstName())
+                .lastName(customerRegistrationRequest.getLastName())
+                .email(customerRegistrationRequest.getEmail())
+                .address(customerRegistrationRequest.getAddress())
                 .build();
         customerRepository.save(customer);
+    }
+
+    private Boolean isDuplicated(String socialSecurityNumber) {
+        return customerRepository.findBySocialSecurityNumber(socialSecurityNumber) != null;
     }
 
     @Override
     public void delete(Integer customerId) {
         var customer = customerRepository.findById(customerId).orElseThrow(() -> {
-            return new EntityNotFoundException("Customer not found");
+            return new EntityNotFoundException("Customer was not found");
         });
         customerRepository.delete(customer);
     }
