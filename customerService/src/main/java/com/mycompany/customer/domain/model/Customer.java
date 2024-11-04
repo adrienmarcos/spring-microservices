@@ -19,14 +19,24 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
     private Integer id;
 
-    @Column(name = "first_name")
+//    @Column(name = "document", nullable = false)
+//    private String document;
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "gender", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Embedded
+    private Address address;
 
     @Override
     public final boolean equals(Object o) {
@@ -43,5 +53,4 @@ public class Customer {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
-
 }
