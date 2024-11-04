@@ -18,6 +18,7 @@ public record CustomerServiceImp(CustomerRepository customerRepository) implemen
             throw new ConflictException("Customer is already registered");
 
         var customer = Customer.builder()
+                .socialSecurityNumber(customerRegistrationRequest.getSocialSecurityNumber())
                 .firstName(customerRegistrationRequest.getFirstName())
                 .lastName(customerRegistrationRequest.getLastName())
                 .email(customerRegistrationRequest.getEmail())
