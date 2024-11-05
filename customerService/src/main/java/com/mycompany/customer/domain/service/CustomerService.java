@@ -9,7 +9,7 @@ import java.util.List;
 public interface CustomerService {
 
     void register(CustomerRegistrationRequest customerRegistrationRequestRequest) throws ConflictException;
-    void delete(Integer customerId);
+    void delete(String socialSecurityNumber);
     CustomerResponse find(String socialSecurityNumber);
     List<CustomerResponse> getAll();
 

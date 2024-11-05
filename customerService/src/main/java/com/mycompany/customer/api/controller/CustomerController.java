@@ -21,9 +21,9 @@ public record CustomerController(CustomerServiceImp customerService) {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
-        customerService.delete(id);
+    @DeleteMapping("/{socialSecurityNumber}")
+    ResponseEntity<Void> delete(@PathVariable("socialSecurityNumber") String ssnumber) {
+        customerService.delete(ssnumber);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

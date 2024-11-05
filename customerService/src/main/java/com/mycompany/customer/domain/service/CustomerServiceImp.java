@@ -35,10 +35,9 @@ public record CustomerServiceImp(CustomerRepository customerRepository) implemen
     }
 
     @Override
-    public void delete(Integer customerId) {
-        var customer = customerRepository.findById(customerId).orElseThrow(() -> {
-            return new EntityNotFoundException("Customer was not found");
-        });
+    public void delete(String socialSecurityNumber) {
+        var customer = customerRepository.findBySocialSecurityNumber(socialSecurityNumber);
+        if (customer == null) throw new EntityNotFoundException("Customer was not found");
         customerRepository.delete(customer);
     }
 
