@@ -14,8 +14,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     @Query( "SELECT new com.mycompany.customer.api.model.response.CustomerResponse(c.socialSecurityNumber, " +
                 "c.firstName, c.lastName, c.email, c.gender, c.address) " +
-            "FROM Customer c WHERE c.id = :id")
-    CustomerResponse find(@Param("id") Integer id);
+            "FROM Customer c WHERE c.socialSecurityNumber = :socialSecurityNumber")
+    CustomerResponse find(@Param("socialSecurityNumber") String socialSecurityNumber);
 
     @Query( "SELECT new com.mycompany.customer.api.model.response.CustomerResponse(c.socialSecurityNumber, " +
                 "c.firstName, c.lastName, c.email, c.gender, c.address) " +

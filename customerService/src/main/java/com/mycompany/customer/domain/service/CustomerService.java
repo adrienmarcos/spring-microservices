@@ -10,7 +10,7 @@ public interface CustomerService {
 
     void register(CustomerRegistrationRequest customerRegistrationRequestRequest) throws ConflictException;
     void delete(Integer customerId);
-    CustomerResponse find(Integer id);
+    CustomerResponse find(String socialSecurityNumber);
     List<CustomerResponse> getAll();
 
 }

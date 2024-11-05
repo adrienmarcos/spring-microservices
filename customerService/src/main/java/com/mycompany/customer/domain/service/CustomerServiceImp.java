@@ -43,8 +43,8 @@ public record CustomerServiceImp(CustomerRepository customerRepository) implemen
     }
 
     @Override
-    public CustomerResponse find(Integer id) {
-        var customer = customerRepository.find(id);
+    public CustomerResponse find(String socialSecurityNumber) {
+        var customer = customerRepository.find(socialSecurityNumber);
         if (customer == null) throw new EntityNotFoundException("Customer was not found");
         return customer;
     }

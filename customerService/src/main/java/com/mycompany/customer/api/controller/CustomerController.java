@@ -27,9 +27,9 @@ public record CustomerController(CustomerServiceImp customerService) {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    ResponseEntity<CustomerResponse> find(@PathVariable("id") Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(customerService.find(id));
+    @GetMapping("/{socialSecurityNumber}")
+    ResponseEntity<CustomerResponse> find(@PathVariable("socialSecurityNumber") String ssnumber) {
+        return ResponseEntity.status(HttpStatus.OK).body(customerService.find(ssnumber));
     }
 
     @GetMapping
