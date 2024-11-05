@@ -1,12 +1,15 @@
 package com.mycompany.customer.domain.service;
 
 import com.mycompany.customer.api.model.request.CustomerRegistrationRequest;
+import com.mycompany.customer.api.model.response.CustomerResponse;
 import com.mycompany.customer.domain.exception.ConflictException;
 import com.mycompany.customer.domain.model.Customer;
 import com.mycompany.customer.domain.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -37,6 +40,18 @@ public record CustomerServiceImp(CustomerRepository customerRepository) implemen
             return new EntityNotFoundException("Customer was not found");
         });
         customerRepository.delete(customer);
+    }
+
+    @Override
+    public CustomerResponse find(Integer id) {
+        var customer = customerRepository.find(id);
+        if (customer == null) throw new EntityNotFoundException("Customer was not found");
+        return customer;
+    }
+
+    @Override
+    public List<CustomerResponse> getAll() {
+        return customerRepository.getAll();
     }
 
 }
