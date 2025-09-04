@@ -1,6 +1,0 @@
-/home/arossato/workspace/microservices/customerService/src/main/java/com/mycompany/customer/CustomerApplication.java
-/home/arossato/workspace/microservices/customerService/src/main/java/com/mycompany/customer/api/controller/CustomerController.java
-/home/arossato/workspace/microservices/customerService/src/main/java/com/mycompany/customer/api/model/request/CustomerRegistrationRequestRequest.java
-/home/arossato/workspace/microservices/customerService/src/main/java/com/mycompany/customer/domain/model/Customer.java
-/home/arossato/workspace/microservices/customerService/src/main/java/com/mycompany/customer/domain/repository/CustomerRepository.java
-/home/arossato/workspace/microservices/customerService/src/main/java/com/mycompany/customer/domain/service/CustomerService.java

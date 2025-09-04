@@ -1,7 +1,0 @@
-com/mycompany/customer/domain/model/Customer$CustomerBuilder.class
-com/mycompany/customer/CustomerApplication.class
-com/mycompany/customer/domain/repository/CustomerRepository.class
-com/mycompany/customer/domain/service/CustomerService.class
-com/mycompany/customer/api/controller/CustomerController.class
-com/mycompany/customer/api/model/request/CustomerRegistrationRequestRequest.class
-com/mycompany/customer/domain/model/Customer.class
