@@ -1,7 +1,6 @@
-package com.mycompany.customer.api.model.response;
+package com.mycompany.customer.web.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mycompany.customer.domain.model.Address;
 import com.mycompany.customer.domain.model.Gender;
 
 public record CustomerResponse(
@@ -22,6 +21,6 @@ public record CustomerResponse(
     Gender gender,
 
     @JsonProperty("address")
-    Address address
+    AddressResponse address
 
 ) { }

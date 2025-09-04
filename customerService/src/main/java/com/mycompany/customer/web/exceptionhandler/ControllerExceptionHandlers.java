@@ -1,4 +1,4 @@
-package com.mycompany.customer.api.exceptionhandler;
+package com.mycompany.customer.web.exceptionhandler;
 
 import com.mycompany.customer.domain.exception.ConflictException;
 import jakarta.persistence.EntityNotFoundException;

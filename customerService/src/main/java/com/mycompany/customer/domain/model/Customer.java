@@ -1,57 +1,57 @@
 package com.mycompany.customer.domain.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import org.hibernate.proxy.HibernateProxy;
-
 import java.util.Objects;
 
-@Builder
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class Customer {
 
-    @Id
-    @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
-    private Integer id;
+    private final String socialSecurityNumber;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private final Gender gender;
+    private final Address address;
 
-    @Column(name = "ss_number", nullable = false)
-    private String socialSecurityNumber;
+    public Customer(String socialSecurityNumber, String firstName, String lastName, String email, Gender gender, Address address) {
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.address = address;
+    }
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    public String getSocialSecurityNumber() {
+        return socialSecurityNumber;
+    }
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    public String getFirstName() {
+        return firstName;
+    }
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    public String getLastName() {
+        return lastName;
+    }
 
-    @Column(name = "gender", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+    public String getEmail() {
+        return email;
+    }
 
-    @Embedded
-    private Address address;
+    public Gender getGender() {
+        return gender;
+    }
 
-    @Override
-    public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
-        if (thisEffectiveClass != oEffectiveClass) return false;
-        Customer customer = (Customer) o;
-        return id != null && Objects.equals(id, customer.id);
+    public Address getAddress() {
+        return address;
     }
 
     @Override
-    public final int hashCode() {
-        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    public boolean equals(Object o) {
+        if (!(o instanceof Customer customer)) return false;
+        return Objects.equals(socialSecurityNumber, customer.socialSecurityNumber);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(socialSecurityNumber);
+    }
 }

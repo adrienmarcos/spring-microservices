@@ -1,7 +1,7 @@
 package com.mycompany.customer.domain.service;
 
-import com.mycompany.customer.api.model.request.CustomerRegistrationRequest;
-import com.mycompany.customer.api.model.response.CustomerResponse;
+import com.mycompany.customer.web.dto.request.CustomerRegistrationRequest;
+import com.mycompany.customer.web.dto.response.CustomerResponse;
 import com.mycompany.customer.domain.exception.ConflictException;
 
 import java.util.List;

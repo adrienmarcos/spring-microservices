@@ -1,4 +1,4 @@
-package com.mycompany.fraud.api.exceptionhandler;
+package com.mycompany.fraud.web.exceptionhandler;
 
 import com.mycompany.fraud.domain.exception.ConflictException;
 import org.springframework.http.HttpStatus;

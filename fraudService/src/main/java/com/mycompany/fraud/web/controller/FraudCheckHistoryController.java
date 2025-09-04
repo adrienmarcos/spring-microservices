@@ -1,6 +1,6 @@
-package com.mycompany.fraud.api.controller;
+package com.mycompany.fraud.web.controller;
 
-import com.mycompany.fraud.api.model.response.FraudCheckResponse;
+import com.mycompany.fraud.web.dto.response.FraudCheckResponse;
 import com.mycompany.fraud.domain.service.FraudCheckHistoryServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.mycompany.fraud.api.model.response;
+package com.mycompany.fraud.web.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

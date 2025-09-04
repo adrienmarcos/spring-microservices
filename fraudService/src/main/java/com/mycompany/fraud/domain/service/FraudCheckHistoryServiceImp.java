@@ -1,6 +1,6 @@
 package com.mycompany.fraud.domain.service;
 
-import com.mycompany.fraud.api.model.response.FraudCheckResponse;
+import com.mycompany.fraud.web.dto.response.FraudCheckResponse;
 import com.mycompany.fraud.domain.repository.FraudCheckHistoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,21 +1,49 @@
 package com.mycompany.customer.domain.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import java.util.Objects;
 
-@Embeddable
 public class Address {
 
-    @Column(name = "address")
-    private String address;
+    private final String address;
+    private final String city;
+    private final String zipCode;
+    private final String country;
 
-    @Column(name = "city")
-    private String city;
+    public Address(String address, String city, String zipCode, String country) {
+        if (zipCode == null || zipCode.isBlank()) {
+            throw new IllegalArgumentException("Zip code cannot be empty");
+        }
+        this.address = address;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.country = country;
+    }
 
-    @Column(name = "zip_code")
-    private String zipCode;
+    public String getAddress() {
+        return address;
+    }
 
-    @Column(name = "county")
-    private String country;
+    public String getCity() {
+        return city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Address address1)) return false;
+        return Objects.equals(address, address1.address) && Objects.equals(city, address1.city) && Objects.equals(zipCode, address1.zipCode) && Objects.equals(country, address1.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(address, city, zipCode, country);
+    }
 
 }
