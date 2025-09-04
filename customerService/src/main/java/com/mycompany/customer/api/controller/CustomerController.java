@@ -5,6 +5,7 @@ import com.mycompany.customer.api.model.response.CustomerResponse;
 import com.mycompany.customer.domain.exception.ConflictException;
 import com.mycompany.customer.domain.service.CustomerServiceImp;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/customers")
+@AllArgsConstructor
 public class CustomerController {
 
     private final CustomerServiceImp customerService;
-
-    public CustomerController(CustomerServiceImp customerService) {
-        this.customerService = customerService;
-    }
 
     @PostMapping
     ResponseEntity<Void> register(@RequestBody @Valid CustomerRegistrationRequest customerRegistrationRequest) throws ConflictException {

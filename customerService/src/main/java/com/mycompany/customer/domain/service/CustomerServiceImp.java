@@ -6,6 +6,7 @@ import com.mycompany.customer.domain.exception.ConflictException;
 import com.mycompany.customer.domain.model.Customer;
 import com.mycompany.customer.domain.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,10 @@ import java.util.List;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class CustomerServiceImp implements CustomerService {
 
     private final CustomerRepository customerRepository;
-
-    public CustomerServiceImp(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     @Override
     public void register(CustomerRegistrationRequest customerRegistrationRequest) throws ConflictException {

@@ -1,11 +1,22 @@
 package com.mycompany.fraud.api.controller;
 
-import com.mycompany.fraud.domain.service.FraudCheckHistoryService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.mycompany.fraud.api.model.response.FraudCheckResponse;
+import com.mycompany.fraud.domain.service.FraudCheckHistoryServiceImp;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/fraudCheck")
-public record FraudCheckHistoryController(FraudCheckHistoryService fraudCheckHistoryService) {
+@AllArgsConstructor
+public class FraudCheckHistoryController {
+
+    private final FraudCheckHistoryServiceImp fraudCheckHistoryService;
+
+    @GetMapping("/{customerId}")
+    ResponseEntity<FraudCheckResponse> isFraudster(@PathVariable("customerId") Integer customerId) {
+        return ResponseEntity.status(HttpStatus.OK).body(fraudCheckHistoryService.isFraudster(customerId));
+    }
 
 }
