@@ -4,6 +4,7 @@
 
 # Maven
 target/
+.mvn/
 
 # Custom
 data/
