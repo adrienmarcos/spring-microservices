@@ -13,19 +13,25 @@ import java.util.List;
 
 @Slf4j
 @Service
-public record CustomerServiceImp(CustomerRepository customerRepository) implements CustomerService {
+public class CustomerServiceImp implements CustomerService {
+
+    private final CustomerRepository customerRepository;
+
+    public CustomerServiceImp(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public void register(CustomerRegistrationRequest customerRegistrationRequest) throws ConflictException {
-        if (isDuplicated(customerRegistrationRequest.getSocialSecurityNumber()))
+        if (isDuplicated(customerRegistrationRequest.socialSecurityNumber()))
             throw new ConflictException("Customer is already registered");
 
         var customer = Customer.builder()
-                .socialSecurityNumber(customerRegistrationRequest.getSocialSecurityNumber())
-                .firstName(customerRegistrationRequest.getFirstName())
-                .lastName(customerRegistrationRequest.getLastName())
-                .email(customerRegistrationRequest.getEmail())
-                .address(customerRegistrationRequest.getAddress())
+                .socialSecurityNumber(customerRegistrationRequest.socialSecurityNumber())
+                .firstName(customerRegistrationRequest.firstName())
+                .lastName(customerRegistrationRequest.lastName())
+                .email(customerRegistrationRequest.email())
+                .address(customerRegistrationRequest.address())
                 .build();
         customerRepository.save(customer);
     }

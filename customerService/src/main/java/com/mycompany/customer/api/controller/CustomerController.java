@@ -13,7 +13,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/customers")
-public record CustomerController(CustomerServiceImp customerService) {
+public class CustomerController {
+
+    private final CustomerServiceImp customerService;
+
+    public CustomerController(CustomerServiceImp customerService) {
+        this.customerService = customerService;
+    }
 
     @PostMapping
     ResponseEntity<Void> register(@RequestBody @Valid CustomerRegistrationRequest customerRegistrationRequest) throws ConflictException {
