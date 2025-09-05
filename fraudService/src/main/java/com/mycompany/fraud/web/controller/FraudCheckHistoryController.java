@@ -1,6 +1,6 @@
 package com.mycompany.fraud.web.controller;
 
-import com.mycompany.fraud.web.dto.response.FraudCheckResponse;
+import com.mycompany.fraud.web.dto.response.FraudCheckHistoryResponse;
 import com.mycompany.fraud.domain.service.FraudCheckHistoryServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ public class FraudCheckHistoryController {
     private final FraudCheckHistoryServiceImp fraudCheckHistoryService;
 
     @GetMapping("/{customerId}")
-    ResponseEntity<FraudCheckResponse> isFraudster(@PathVariable("customerId") Integer customerId) {
+    ResponseEntity<FraudCheckHistoryResponse> isFraudster(@PathVariable("customerId") Integer customerId) {
         return ResponseEntity.status(HttpStatus.OK).body(fraudCheckHistoryService.isFraudster(customerId));
     }
 

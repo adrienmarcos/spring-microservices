@@ -1,7 +1,7 @@
 package com.mycompany.fraud.domain.service;
 
-import com.mycompany.fraud.web.dto.response.FraudCheckResponse;
-import com.mycompany.fraud.domain.repository.FraudCheckHistoryRepository;
+import com.mycompany.fraud.infra.repository.FraudCheckHistoryRepositoryImpl;
+import com.mycompany.fraud.web.dto.response.FraudCheckHistoryResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +9,19 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class FraudCheckHistoryServiceImp implements FraudCheckHistoryService {
 
-    private final FraudCheckHistoryRepository fraudCheckHistoryRepository;
+    private final FraudCheckHistoryRepositoryImpl fraudCheckHistoryRepository;
 
     @Override
-    public FraudCheckResponse isFraudster(Integer customerId) {
-        return new FraudCheckResponse(true, "User flagged as fraud");
+    public FraudCheckHistoryResponse isFraudster(Integer customerId) {
+        return fraudCheckHistoryRepository.find(customerId)
+                .map(fraudCheckHistory -> new FraudCheckHistoryResponse(
+                        fraudCheckHistory.getFraud(),
+                        "User was flagged as a fraud"
+                ))
+                .orElseGet(() -> new FraudCheckHistoryResponse(
+                        false,
+                        "User has never been flagged as fraud"
+                ));
     }
 
 }

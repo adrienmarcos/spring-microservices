@@ -53,10 +53,10 @@ public class CustomerRepositoryImpl implements CustomerRepository {
                         entity.getEmail(),
                         entity.getGender(),
                         new Address(
-                                entity.getAddressEntity().getAddress(),
-                                entity.getAddressEntity().getCity(),
-                                entity.getAddressEntity().getZipCode(),
-                                entity.getAddressEntity().getCountry()
+                            entity.getAddressEntity().getAddress(),
+                            entity.getAddressEntity().getCity(),
+                            entity.getAddressEntity().getZipCode(),
+                            entity.getAddressEntity().getCountry()
                         )
                 ));
     }
@@ -72,10 +72,10 @@ public class CustomerRepositoryImpl implements CustomerRepository {
                         entity.getEmail(),
                         entity.getGender(),
                         new Address(
-                                entity.getAddressEntity().getCountry(),
-                                entity.getAddressEntity().getCity(),
-                                entity.getAddressEntity().getZipCode(),
-                                entity.getAddressEntity().getCountry()
+                            entity.getAddressEntity().getCountry(),
+                            entity.getAddressEntity().getCity(),
+                            entity.getAddressEntity().getZipCode(),
+                            entity.getAddressEntity().getCountry()
                         )
                 ))
                 .toList();
@@ -83,7 +83,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public void delete(Customer customer) {
-        jpaCustomerEntityRepository.findBySocialSecurityNumber(customer.getSocialSecurityNumber()).ifPresent(jpaCustomerEntityRepository::delete);
+        jpaCustomerEntityRepository.findBySocialSecurityNumber(customer.getSocialSecurityNumber())
+                .ifPresent(jpaCustomerEntityRepository::delete);
     }
 
 }
