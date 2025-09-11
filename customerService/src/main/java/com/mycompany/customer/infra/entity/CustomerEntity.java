@@ -39,7 +39,7 @@ public class CustomerEntity {
     private Gender gender;
 
     @Embedded
-    private AddressEntity addressEntity;
+    private AddressEntity address;
 
     @Override
     public final boolean equals(Object o) {

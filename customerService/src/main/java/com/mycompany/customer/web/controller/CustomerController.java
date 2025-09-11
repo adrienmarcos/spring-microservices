@@ -3,7 +3,8 @@ package com.mycompany.customer.web.controller;
 import com.mycompany.customer.web.dto.request.CustomerRegistrationRequest;
 import com.mycompany.customer.web.dto.response.CustomerResponse;
 import com.mycompany.customer.domain.exception.ConflictException;
-import com.mycompany.customer.domain.service.CustomerServiceImp;
+import com.mycompany.customer.application.service.CustomerServiceImp;
+import com.mycompany.customer.web.mapper.CustomerWebMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,12 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerServiceImp customerService;
+    private final CustomerWebMapper mapper;
 
     @PostMapping
-    ResponseEntity<Void> register(@RequestBody @Valid CustomerRegistrationRequest customerRegistrationRequest) throws ConflictException {
-        customerService.register(customerRegistrationRequest);
+    ResponseEntity<Void> register(@RequestBody @Valid CustomerRegistrationRequest request) throws ConflictException {
+        var customer = mapper.toDomain(request);
+        customerService.register(customer);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -33,12 +36,15 @@ public class CustomerController {
 
     @GetMapping("/{socialSecurityNumber}")
     ResponseEntity<CustomerResponse> find(@PathVariable("socialSecurityNumber") String ssnumber) {
-        return ResponseEntity.status(HttpStatus.OK).body(customerService.find(ssnumber));
+        var customer = customerService.find(ssnumber);
+        return ResponseEntity.status(HttpStatus.OK).body(mapper.toDto(customer));
     }
 
     @GetMapping
     ResponseEntity<List<CustomerResponse>> getAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(customerService.getAll());
+        var customers = customerService.getAll();
+        List<CustomerResponse> response = customers.stream().map(mapper::toDto).toList();
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
 }
