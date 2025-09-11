@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record FraudCheckHistoryResponse(
 
-    @JsonProperty("fraud")
-    Boolean fraud,
+    @JsonProperty("isFraud")
+    Boolean isFraud,
 
     @JsonProperty("message")
     String message

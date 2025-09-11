@@ -11,6 +11,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class CustomerServiceImp implements CustomerService {
 
     private final CustomerRepositoryImpl customerRepository;
+    private final RestTemplate restTemplate;
 
     @Override
     public void register(CustomerRegistrationRequest request) throws ConflictException {
@@ -41,6 +43,11 @@ public class CustomerServiceImp implements CustomerService {
             request.gender(),
             addressDomain
         );
+
+        // todo: check if email is valid
+        // todo: check if email is not taken
+        // todo: check if customer is fraudster
+        // todo: send notification
 
         customerRepository.save(customerDomain);
     }

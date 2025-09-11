@@ -1,7 +1,7 @@
 package com.mycompany.fraud.web.controller;
 
 import com.mycompany.fraud.web.dto.response.FraudCheckHistoryResponse;
-import com.mycompany.fraud.domain.service.FraudCheckHistoryServiceImp;
+import com.mycompany.fraud.application.service.FraudCheckHistoryServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
