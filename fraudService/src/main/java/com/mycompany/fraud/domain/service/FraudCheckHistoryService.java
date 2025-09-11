@@ -1,7 +1,7 @@
 package com.mycompany.fraud.domain.service;
 
-import com.mycompany.fraud.web.dto.response.FraudCheckHistoryResponse;
+import com.mycompany.fraud.domain.model.FraudCheckHistory;
 
 public interface FraudCheckHistoryService {
-    FraudCheckHistoryResponse isFraudster(Integer customerId);
+    FraudCheckHistory isFraudster(Integer customerId);
 }

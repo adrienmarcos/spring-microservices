@@ -19,7 +19,7 @@ public class FraudCheckHistory {
         return customerId;
     }
 
-    public Boolean getFraud() {
+    public Boolean getIsFraud() {
         return isFraud;
     }
 

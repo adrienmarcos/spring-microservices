@@ -1,9 +1,8 @@
 package com.mycompany.fraud.application.service;
 
+import com.mycompany.fraud.domain.model.FraudCheckHistory;
 import com.mycompany.fraud.domain.service.FraudCheckHistoryService;
-import com.mycompany.fraud.infra.entity.FraudCheckHistoryEntity;
 import com.mycompany.fraud.infra.repository.FraudCheckHistoryRepositoryImpl;
-import com.mycompany.fraud.web.dto.response.FraudCheckHistoryResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,27 +16,12 @@ public class FraudCheckHistoryServiceImp implements FraudCheckHistoryService {
     private final FraudCheckHistoryRepositoryImpl fraudCheckHistoryRepository;
 
     @Override
-    public FraudCheckHistoryResponse isFraudster(Integer customerId) {
-        Optional<FraudCheckHistoryEntity> existing = fraudCheckHistoryRepository.findLastByCustomerId(customerId);
-
-        FraudCheckHistoryResponse response = existing
-                .map(history -> new FraudCheckHistoryResponse(
-                        history.getIsFraud(),
-                        "User was flagged as a fraud"
-                ))
-                .orElseGet(() -> new FraudCheckHistoryResponse(
-                        false,
-                        "User has never been flagged as fraud"
-                ));
-
-        FraudCheckHistoryEntity newHistory = FraudCheckHistoryEntity.builder()
-                .customerId(customerId)
-                .isFraud(response.isFraud())
-                .createdAt(LocalDateTime.now())
-                .build();
+    public FraudCheckHistory isFraudster(Integer customerId) {
+        Optional<FraudCheckHistory> existing = fraudCheckHistoryRepository.findLastByCustomerId(customerId);
+        boolean isFraud = existing.map(FraudCheckHistory::getIsFraud).orElse(false);
+        FraudCheckHistory newHistory = new FraudCheckHistory(customerId, isFraud, LocalDateTime.now());
         fraudCheckHistoryRepository.save(newHistory);
-
-        return response;
+        return newHistory;
     }
 
 }
