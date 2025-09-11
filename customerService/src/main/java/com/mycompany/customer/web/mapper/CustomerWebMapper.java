@@ -15,7 +15,7 @@ public class CustomerWebMapper {
                 dto.address().address(),
                 dto.address().city(),
                 dto.address().zipCode(),
-                dto.address().coutry()
+                dto.address().country()
         );
 
         return new Customer(

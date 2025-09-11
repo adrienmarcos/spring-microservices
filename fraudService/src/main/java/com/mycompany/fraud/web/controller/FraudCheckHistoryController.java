@@ -1,6 +1,5 @@
 package com.mycompany.fraud.web.controller;
 
-import com.mycompany.fraud.domain.model.FraudCheckHistory;
 import com.mycompany.fraud.web.dto.response.FraudCheckHistoryResponse;
 import com.mycompany.fraud.application.service.FraudCheckHistoryServiceImp;
 import com.mycompany.fraud.web.mapper.FraudCheckHistoryWebMapper;

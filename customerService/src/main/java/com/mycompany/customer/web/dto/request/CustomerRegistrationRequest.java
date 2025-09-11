@@ -2,6 +2,7 @@ package com.mycompany.customer.web.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mycompany.customer.domain.model.Gender;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -30,6 +31,7 @@ public record CustomerRegistrationRequest(
     Gender gender,
 
     @JsonProperty("address")
+    @Valid
     AddressRequest address
 
 ) { }
